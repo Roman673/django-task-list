@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import redirect, render
 
 from .forms import TaskForm
@@ -8,7 +9,8 @@ def tasks(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_task = form.save()
+            messages.success(request, 'Added a new task {}.'.format(new_task))
             return redirect('tasks:tasks')
     else:
         form = TaskForm()
@@ -21,4 +23,5 @@ def task_delete(request, pk):
     if request.method == 'POST':
         task = Task.objects.get(pk=pk)
         task.delete()
+        messages.success(request, 'Deleted task {}.'.format(task))
     return redirect('tasks:tasks') 

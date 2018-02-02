@@ -7,7 +7,7 @@
   * Task create
   * Task delete
 * Add messages
-* Create templates
 * Creata REST API
+* Create templates
 * Upload to github
 * Published to heroke

@@ -11,5 +11,7 @@ class TaskForm(ModelForm):
         widgets = {
             'name': TextInput(attrs={
                 'autofocus': True,     
+                'class': 'form-control',
+                'placeholder': 'Enter a new task',
             }),
         }

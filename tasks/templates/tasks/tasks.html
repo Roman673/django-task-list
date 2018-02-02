@@ -3,23 +3,42 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-<form action="" method="post">
-  {% csrf_token %}
-  <b>{{ form.name.label_tag }}</b><br>
-  {{ form.name }}<br><br>
-  <button type="submit">Add Task</button>
-</form>
-<ul>
-  {% for task in tasks %}
-    <li>
-      {{ task.name }}
-      <form action="{% url 'tasks:delete' task.id %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-      </form>
-    </li>
-  {% empty %}
-    <p>Task list is empty</p>
-  {% endfor %}
-</ul>
+<div class="card mb-3">
+  <div class="card-header">
+    New Task
+  </div>
+  <div class="card-body">
+    <form action="" method="post">
+      {% csrf_token %}
+      <b>{{ form.name.label_tag }}</b>
+      {{ form.name }}<br>
+      <button type="submit" class="btn btn-info">Add Task</button>
+    </form>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">Current Tasks</div>
+  <div class="card-body">
+    <div class="h5 card-title">Tasks</div>
+      <ul class="list-group">
+      {% for task in tasks %}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-10">
+              {{ task.name }}
+            </div>
+            <div class="col-2">
+              <form action="{% url 'tasks:delete' task.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </li>
+      {% empty %}
+        <li class="list-group-item list-group-item-light">Task List is Empty!</li>
+      {% endfor %}
+      </ul>
+  </div>
+</div>
 {% endblock %}

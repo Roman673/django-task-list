@@ -1,0 +1,25 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+  <b>{{ form.name.label_tag }}</b><br>
+  {{ form.name }}<br><br>
+  <button type="submit">Add Task</button>
+</form>
+<ul>
+  {% for task in tasks %}
+    <li>
+      {{ task.name }}
+      <form action="{% url 'tasks:delete' task.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+      </form>
+    </li>
+  {% empty %}
+    <p>Task list is empty</p>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,5 +1,21 @@
-<nav class="navbar navbar-light bg-light mb-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
   <div class="container">
     <span class="navbar-brand mb-0 h1">Base Task List</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Django REST API
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdown">
+            <a class="dropdown-item" href="{% url 'tasks-api:tasks-list' %}">Task List API</a>
+            <a class="dropdown-item" href="{% url 'tasks-api:task-create' %}">Task Create API</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

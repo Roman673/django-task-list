@@ -11,8 +11,8 @@
     <form action="" method="post">
       {% csrf_token %}
       <b>{{ form.name.label_tag }}</b>
-      {{ form.name }}<br>
-      <button type="submit" class="btn btn-info">Add Task</button>
+      {{ form.name }}
+      <button type="submit" class="btn btn-info mt-3">Add Task</button>
     </form>
   </div>
 </div>
@@ -20,20 +20,23 @@
   <div class="card-header">Current Tasks</div>
   <div class="card-body">
     <div class="h5 card-title">Tasks</div>
-      <ul class="list-group">
+      <ul class="list-group list-group-flush">
       {% for task in tasks %}
         <li class="list-group-item">
-          <div class="row">
-            <div class="col-10">
-              {{ task.name }}
-            </div>
-            <div class="col-2">
-              <form action="{% url 'tasks:delete' task.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Delete</button>
-              </form>
-            </div>
-          </div>
+          {{ task.name }}
+          <form action="{% url 'tasks:delete' task.id %}" method="post" class="mt-1 mb-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+          </form>
+          <a target="_blank" class="btn btn-info btn-sm" href="{% url 'tasks-api:task-detail' task.pk %}">
+            Detail API
+          </a>
+          <a target="_blank" class="btn btn-warning btn-sm" href="{% url 'tasks-api:task-update' task.pk %}">
+            Update API
+          </a>
+          <a target="_blank" class="btn btn-danger btn-sm" href="{% url 'tasks-api:task-delete' task.pk %}">
+            Delete API
+          </a>
         </li>
       {% empty %}
         <li class="list-group-item list-group-item-light">Task List is Empty!</li>

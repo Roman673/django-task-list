@@ -1,4 +1,4 @@
-# Basic Task List
+# Basic Task List (Django REST Framework)
 
 ## TODO:
 * Create models
